@@ -272,7 +272,7 @@ async function expDoc(fmt){
 
 // ═══ Chat ═══
 async function send(){
-  const ta=document.getElementById('ta');const msg=ta.value.trim();if(!msg||streaming)return;
+  const ta=document.getElementById('ta');const msg=ta.value.trim();if(!msg||streaming||filling)return;
   ta.value='';ta.style.height='auto';
   if(!sid)sid=Math.random().toString(36).slice(2,10);
   addMsg('user',msg);const dot=addDots();streaming=true;
@@ -304,8 +304,23 @@ async function autoFill(){
   }catch(e){}
   hideLoading();
 }
-function showLoading(){document.getElementById('doc-status').classList.remove('hidden');}
-function hideLoading(){document.getElementById('doc-status').classList.add('hidden');}
+let filling=false;
+function showLoading(){
+  filling=true;
+  document.getElementById('doc-status').classList.remove('hidden');
+  document.getElementById('ta').disabled=true;
+  document.getElementById('ta').placeholder='서식 갱신 중...';
+  document.getElementById('btn-send').disabled=true;
+  document.getElementById('btn-send').classList.add('opacity-50');
+}
+function hideLoading(){
+  filling=false;
+  document.getElementById('doc-status').classList.add('hidden');
+  document.getElementById('ta').disabled=false;
+  document.getElementById('ta').placeholder='메시지를 입력하세요...';
+  document.getElementById('btn-send').disabled=false;
+  document.getElementById('btn-send').classList.remove('opacity-50');
+}
 function stopStream(){if(abortCtrl)abortCtrl.abort();}
 
 // ═══ 음성 입력 ═══
