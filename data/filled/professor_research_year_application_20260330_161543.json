@@ -1,0 +1,32 @@
+{
+  "form_name": "교수 연구년 허가 신청서",
+  "form_id": "professor_research_year_application",
+  "template_num": 21,
+  "filled_at": "2026-03-30T16:15:43.666093",
+  "fields": {
+    "recipient": "총장 귀하",
+    "department": "과학기술융합대학 물리 및 공학물리 전공",
+    "rank": "교수",
+    "applicant_name": "황승보",
+    "birth_date": "1975. 1. 20.",
+    "application_period": "2025 년 3 월 1 일 – 2026 년 2 월 28 일 (12 개월)",
+    "visit_country": "미국",
+    "visit_institution": "캘리포니아 대학교 버클리 (University of California, Berkeley)",
+    "course_replacement": "담당 과목: 전자기학, 컴퓨터 개론. 대체 방안: 해당 과목 담당 교수를 수배하여 강의 계획서를 공유하고 대체 강의를 진행함.",
+    "position_replacement": "해당 없음 (현재 보직 없음)",
+    "emergency_contact_name": "조수행",
+    "emergency_contact_relation": "동료",
+    "emergency_contact_address": "서울특별시 강남구 테헤란로 123, 10 층 (가상 정보, 실제 주소로 수정 필요)",
+    "emergency_contact_phone": "010-1234-5678 (가상 정보, 실제 번호로 수정 필요)",
+    "recommender_title": "학과장",
+    "recommender_signature": "인 날인",
+    "attachment_list": "연구계획서 1 부, 방문 기관 초청장 1 부",
+    "application_date": "2024 년 10 월 24 일",
+    "applicant_signature": "인 날인",
+    "research_title_kr": "NPU 전용 최적화 챗봇 개발 및 고도화 연구",
+    "research_title_en": "Development and Optimization of NPU-Dedicated Chatbot",
+    "research_purpose": "생성형 AI 와 대규모 언어 모델 (LLM) 의 급속한 확산으로 인해 기존 GPU 기반 추론의 높은 전력 소모와 지연 시간 문제가 부각되고 있습니다. 본 연구는 이러한 제약을 극복하기 위해 전용 하드웨어인 NPU(Neural Processing Unit) 에 최적화된 경량화 챗봇 모델을 개발하고, 엣지 디바이스 환경에서의 실시간 응답 성능을 극대화하는 것을 목적으로 합니다.",
+    "research_content": "1. NPU 아키텍처 분석 및 환경 구축 (3 월~5 월): UCB 연구실 내 최신 NPU 하드웨어 사양 분석 및 시뮬레이션 환경 조성.\n2. 모델 최적화 및 양자화 연구 (6 월~9 월): 저정밀도 양자화 (Quantization) 및 스파스화 (Sparsification) 기법을 적용하여 모델 크기와 추론 속도를 개선.\n3. 시스템 통합 및 성능 검증 (10 월~12 월): 최적화된 모델을 엣지 디바이스 기반 챗봇 서비스로 통합하고, 지연 시간 및 에너지 효율성 평가.\n4. 결과 정리 및回国 후 확산 (1 월~2 월): 국제 학술지 논문 작성 및回国 후 관련 강의 자료 개발.",
+    "expected_effect": "1. 기술적 성과: NPU 기반 차세대 AI 알고리즘 선점을 통한 전력 소모 40% 이상 감소 및 추론 속도 2 배 이상 향상.\n2. 학술적 성과: UCB 와의 공동 연구를 통한 국제적 수준의 논문 게재 및 연구 네트워크 확대.\n3. 교육적 기여: 연구년 중 습득한 최신 AI/하드웨어 지식을回国 후 '전자기학' 및 '컴퓨터 개론' 수업에 접목하여 학생들의 실무 역량 강화.\n4. 협력 네트워크: UCB 연구진과의 지속적 교류를 통한 향후 공동 연구 기반 마련."
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "form_name": "교수 연구년 허가 신청서",
+  "form_id": "professor_research_year_permission_application",
+  "description": "교수가 연구년을 수행하기 위해 소속 대학에 허가 신청하고, 연구 계획 및 업무 대체 방안을 제출하는 공식 서식입니다.",
+  "prompt_prefix": "교수 연구년 허가 신청서를 작성할 때, 신청인의 기본 정보, 연구 기간 및 방문지, 업무 대체 방안, 비상 연락처를 정확히 입력하고, 첨부된 연구계획서 내용을 요점별로 간결하게 기술하십시오.",
+  "sections": [
+    {
+      "section_name": "신청인 기본 정보",
+      "fields": [
+        {
+          "field_id": "department",
+          "label": "소속",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 과학기술융합대학",
+          "row_group": 1
+        },
+        {
+          "field_id": "major",
+          "label": "전공",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 물리 및 공학물리 전공",
+          "row_group": 1
+        },
+        {
+          "field_id": "rank",
+          "label": "직급",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 교수",
+          "row_group": 2
+        },
+        {
+          "field_id": "applicant_name",
+          "label": "성명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 홍길동",
+          "row_group": 2
+        },
+        {
+          "field_id": "birth_date",
+          "label": "생년월일",
+          "type": "date",
+          "required": true,
+          "placeholder": "예: 1975. 1. 20.",
+          "row_group": 3
+        }
+      ]
+    },
+    {
+      "section_name": "연구년 신청 기간 및 방문지",
+      "fields": [
+        {
+          "field_id": "application_period",
+          "label": "연구년 신청기간",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 2022 년 3 월 1 일 – 2023 년 2 월 28 일 (12 개월)",
+          "row_group": 4
+        },
+        {
+          "field_id": "visit_country",
+          "label": "방문지 국가명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 대한민국",
+          "row_group": 5
+        },
+        {
+          "field_id": "visit_institution",
+          "label": "방문지 학교/기관명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 연세대학교 미래캠퍼스",
+          "row_group": 5
+        }
+      ]
+    },
+    {
+      "section_name": "업무 대체 방안",
+      "fields": [
+        {
+          "field_id": "course_replacement",
+          "label": "담당과목 대체방안",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "예: 전자기학, 대체 강의자 수배 완료"
+        },
+        {
+          "field_id": "committee_replacement",
+          "label": "보직·각종 위원 대체방안",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "예: 해당 없음 또는 대체자명"
+        }
+      ]
+    },
+    {
+      "section_name": "비상 연락처",
+      "fields": [
+        {
+          "field_id": "emergency_contact_name",
+          "label": "비상연락처 성명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 홍길순",
+          "row_group": 6
+        },
+        {
+          "field_id": "emergency_contact_relation",
+          "label": "관계",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 모",
+          "row_group": 6
+        },
+        {
+          "field_id": "emergency_contact_address",
+          "label": "비상연락처 주소",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 서울 서대문구 홍제동 55",
+          "row_group": 7
+        },
+        {
+          "field_id": "emergency_contact_phone",
+          "label": "비상연락처 전화번호",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 02-123-4567",
+          "row_group": 7
+        }
+      ]
+    },
+    {
+      "section_name": "추천자 및 서명",
+      "fields": [
+        {
+          "field_id": "recommender_role",
+          "label": "추천자 직함",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 학과(부)장",
+          "row_group": 8
+        },
+        {
+          "field_id": "recommender_signature",
+          "label": "추천자 인 또는 서명",
+          "type": "text",
+          "required": true,
+          "placeholder": "인 또는 서명란",
+          "row_group": 8
+        },
+        {
+          "field_id": "applicant_signature",
+          "label": "신청인 서명",
+          "type": "text",
+          "required": true,
+          "placeholder": "신청인 서명",
+          "row_group": 9
+        },
+        {
+          "field_id": "applicant_seal",
+          "label": "신청인 날인",
+          "type": "text",
+          "required": true,
+          "placeholder": "인",
+          "row_group": 9
+        },
+        {
+          "field_id": "application_date",
+          "label": "신청일",
+          "type": "date",
+          "required": true,
+          "placeholder": "예: 2022 년 4 월 27 일",
+          "row_group": 10
+        },
+        {
+          "field_id": "recipient",
+          "label": "수신처",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 연세대학교 총장 귀하",
+          "row_group": 10
+        }
+      ]
+    },
+    {
+      "section_name": "연구계획서 (첨부)",
+      "fields": [
+        {
+          "field_id": "research_title_kr",
+          "label": "연구과제명 (한글)",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 나노구조를 활용한 투명하고 유연한 전극 연구"
+        },
+        {
+          "field_id": "research_title_en",
+          "label": "연구과제명 (영문)",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: A study of transparent and flexible electrodes using nano-structures"
+        },
+        {
+          "field_id": "research_purpose",
+          "label": "연구목적",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "연구의 목적과 기대효과를 기술하십시오."
+        },
+        {
+          "field_id": "research_content",
+          "label": "연구내용",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "구체적인 연구 내용 및 실행 계획을 기술하십시오."
+        },
+        {
+          "field_id": "expected_effect",
+          "label": "연구의 기대효과 및 활용방안",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "연구를 통한 기대 효과와 활용 방안을 기술하십시오."
+        },
+        {
+          "field_id": "attached_documents",
+          "label": "첨부서류 목록",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "예: 연구계획서 1 부"
+        }
+      ]
+    }
+  ],
+  "has_table": false,
+  "source": "specimen",
+  "required_fields": [
+    "department",
+    "major",
+    "rank",
+    "applicant_name",
+    "birth_date",
+    "application_period",
+    "visit_country",
+    "visit_institution",
+    "course_replacement",
+    "committee_replacement",
+    "emergency_contact_name",
+    "emergency_contact_relation",
+    "emergency_contact_address",
+    "emergency_contact_phone",
+    "recommender_role",
+    "recommender_signature",
+    "applicant_signature",
+    "applicant_seal",
+    "application_date",
+    "recipient",
+    "research_title_kr",
+    "research_title_en",
+    "research_purpose",
+    "research_content",
+    "expected_effect",
+    "attached_documents"
+  ],
+  "created_at": "2026-03-30T17:21:10.179098",
+  "updated_at": "2026-03-30T17:21:10.179098",
+  "form_number": 23
+}

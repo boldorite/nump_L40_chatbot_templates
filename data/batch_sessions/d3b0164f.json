@@ -1,0 +1,438 @@
+{
+  "batch_id": "d3b0164f",
+  "files": [
+    {
+      "file_id": "97080600",
+      "original_name": "[DOCU1-1] 물리및공학물리학과 과목대체 회의록.docx",
+      "saved_path": "data\\uploads\\97080600.docx",
+      "status": "registered",
+      "pdf_path": null,
+      "schema": {
+        "form_name": "물리및공학물리 교육혁신위원회 회의록",
+        "form_id": "physics_education_innovation_committee_minutes",
+        "description": "물리및공학물리 교육혁신위원회의 회의 내용을 기록하는 문서",
+        "prompt_prefix": "다음은 물리및공학물리 교육혁신위원회 회의록입니다. 회의 일시, 장소, 참석자, 상정 안건, 논의 및 결의사항을 정확히 작성하세요.",
+        "sections": [
+          {
+            "section_name": "기본 정보",
+            "fields": [
+              {
+                "field_id": "meeting_date",
+                "label": "일시",
+                "type": "date",
+                "required": true,
+                "placeholder": "예: 2025. 1. 20. (화요일) 16:00"
+              },
+              {
+                "field_id": "location",
+                "label": "장소",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 창조관 224호"
+              }
+            ]
+          },
+          {
+            "section_name": "위원 구성 및 참석자",
+            "fields": [
+              {
+                "field_id": "committee_members",
+                "label": "교육혁신위원회 구성 및 참석자",
+                "type": "table",
+                "required": true,
+                "table_columns": [
+                  "소속",
+                  "직책",
+                  "성함"
+                ],
+                "placeholder": "위원 정보를 입력하세요."
+              }
+            ]
+          },
+          {
+            "section_name": "상정 안건",
+            "fields": [
+              {
+                "field_id": "agenda_item",
+                "label": "상정 안건",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 졸업 사정 과목 대체"
+              },
+              {
+                "field_id": "target_student",
+                "label": "대상 학생",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 사사사 (학번202011223344)"
+              },
+              {
+                "field_id": "course_substitution_details",
+                "label": "과목 대체 내용",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 위 학생이 수강한 과목이 대체 과목으로 인정될 수 있는지 심의"
+              }
+            ]
+          },
+          {
+            "section_name": "논의 및 결의사항",
+            "fields": [
+              {
+                "field_id": "discussion",
+                "label": "논의 내용",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 대체 과목과 기존 과목의 연관성 논의"
+              },
+              {
+                "field_id": "resolution",
+                "label": "결의 내용",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 대체 과목을 전공 학점으로 인정함"
+              }
+            ]
+          },
+          {
+            "section_name": "작성자 정보",
+            "fields": [
+              {
+                "field_id": "author",
+                "label": "작성자",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 물리및공학물리 교육혁신위원회 위원장"
+              },
+              {
+                "field_id": "assistant",
+                "label": "조수",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 조 수 행"
+              }
+            ]
+          }
+        ],
+        "has_table": true,
+        "source": "empty",
+        "required_fields": [
+          "meeting_date",
+          "location",
+          "committee_members",
+          "agenda_item",
+          "target_student",
+          "course_substitution_details",
+          "discussion",
+          "resolution",
+          "author",
+          "assistant"
+        ],
+        "created_at": "2026-03-30T01:05:28.157568",
+        "updated_at": "2026-03-30T01:05:28.157568",
+        "form_number": 9
+      },
+      "form_number": 9,
+      "is_specimen": false,
+      "error_message": null
+    },
+    {
+      "file_id": "4f922ecc",
+      "original_name": "[DOCU1-1] 물리및공학물리학과 과목대체 회의록.hwpx",
+      "saved_path": "data\\uploads\\4f922ecc.hwpx",
+      "status": "registered",
+      "pdf_path": null,
+      "schema": {
+        "form_name": "회의록",
+        "form_id": "meeting_minutes_physics_education_innovation_committee",
+        "description": "물리및공학물리 교육혁신위원회의 회의 내용을 기록한 서식",
+        "prompt_prefix": "물리및공학물리 교육혁신위원회의 회의 내용을 정확하게 기록하기 위해 다음 양식에 맞춰 작성하세요.",
+        "sections": [
+          {
+            "section_name": "기본 정보",
+            "fields": [
+              {
+                "field_id": "meeting_date",
+                "label": "일시",
+                "type": "date",
+                "required": true,
+                "placeholder": "예: 2025. 1. 20. (화요일) 16:00"
+              },
+              {
+                "field_id": "location",
+                "label": "장소",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 창조관 224호"
+              }
+            ]
+          },
+          {
+            "section_name": "위원회 구성 및 참석자",
+            "fields": [
+              {
+                "field_id": "committee_members",
+                "label": "위원 정보",
+                "type": "table",
+                "required": true,
+                "placeholder": "소속, 직책, 성함을 입력하세요",
+                "table_columns": [
+                  "소속",
+                  "직책",
+                  "성함"
+                ]
+              }
+            ]
+          },
+          {
+            "section_name": "상정 안건",
+            "fields": [
+              {
+                "field_id": "agenda_title",
+                "label": "안건",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 졸업 사정 과목 대체"
+              },
+              {
+                "field_id": "student_info",
+                "label": "대상 학생",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 사사사 (학번202011223344)"
+              },
+              {
+                "field_id": "subject_info",
+                "label": "과목 정보",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 위 학생이 수강한 회로이론 (SWE2005) 과목이 기초전자 (PHS2002) 과목과의 전공 학점 인정 여부에 대해 심의함."
+              }
+            ]
+          },
+          {
+            "section_name": "논의 및 결의사항",
+            "fields": [
+              {
+                "field_id": "discussion_summary",
+                "label": "논의 내용 요약",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 사사사 학생의 회로이론 과목이 기초전자 과목과 연관성이 높음"
+              },
+              {
+                "field_id": "resolution",
+                "label": "결의 내용",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 회로이론 과목 수강을 물리및공학물리학과 전공학점으로 인정함"
+              }
+            ]
+          },
+          {
+            "section_name": "작성 및 서명",
+            "fields": [
+              {
+                "field_id": "author",
+                "label": "작성자",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 물리및공학물리 교육혁신위원회 위원장"
+              },
+              {
+                "field_id": "assistant",
+                "label": "조수",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 조 수 행"
+              },
+              {
+                "field_id": "signature_attachment",
+                "label": "서명 이미지 첨부",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 조수행.bmp (가로 95pixel, 세로 121pixel)"
+              }
+            ]
+          }
+        ],
+        "has_table": true,
+        "source": "empty",
+        "required_fields": [
+          "meeting_date",
+          "location",
+          "committee_members",
+          "agenda_title",
+          "student_info",
+          "subject_info",
+          "discussion_summary",
+          "resolution",
+          "author",
+          "assistant",
+          "signature_attachment"
+        ],
+        "created_at": "2026-03-30T01:06:09.313935",
+        "updated_at": "2026-03-30T01:06:09.313935",
+        "form_number": 10
+      },
+      "form_number": 10,
+      "is_specimen": false,
+      "error_message": null
+    },
+    {
+      "file_id": "ac6d2317",
+      "original_name": "[DOCU1-2] 물리및공학물리학과 과목대체 회의록.pdf",
+      "saved_path": "data\\uploads\\ac6d2317.pdf",
+      "status": "registered",
+      "pdf_path": "data\\uploads\\ac6d2317.pdf",
+      "schema": {
+        "form_name": "교육혁신위원회 회의록",
+        "form_id": "education_innovation_committee_minutes",
+        "description": "교육혁신위원회의 회의 내용을 기록한 서식",
+        "prompt_prefix": "2026학년도 물리및공학물리 교육혁신위원회의 회의 내용을 아래 서식을 기반으로 작성하시오.",
+        "sections": [
+          {
+            "section_name": "위원 정보",
+            "fields": [
+              {
+                "field_id": "department",
+                "label": "소속",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 물리및공학물리학과"
+              },
+              {
+                "field_id": "position",
+                "label": "직책",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 위원장, 위원"
+              },
+              {
+                "field_id": "name",
+                "label": "성함",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 가가가"
+              }
+            ],
+            "type": "table",
+            "table_columns": [
+              "소 속",
+              "직 책",
+              "성 함"
+            ]
+          },
+          {
+            "section_name": "회의 정보",
+            "fields": [
+              {
+                "field_id": "meeting_type",
+                "label": "회의명",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 2026학년도 물리및공학물리 교육혁신위원회"
+              },
+              {
+                "field_id": "meeting_date",
+                "label": "일시",
+                "type": "date",
+                "required": true,
+                "placeholder": "예: 2025. 1. 20. (화요일) 16:00"
+              },
+              {
+                "field_id": "location",
+                "label": "장소",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 창조관 224호"
+              },
+              {
+                "field_id": "committee_members",
+                "label": "교육혁신위원회 구성 및 참석",
+                "type": "table",
+                "required": true,
+                "table_columns": [
+                  "소 속",
+                  "직 책",
+                  "성 함"
+                ]
+              }
+            ]
+          },
+          {
+            "section_name": "상정 안건 및 논의 내용",
+            "fields": [
+              {
+                "field_id": "agenda",
+                "label": "상정 안건",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 졸업 사정 과목 대체"
+              },
+              {
+                "field_id": "student_info",
+                "label": "대상 학생 정보",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 사사사 (학번202011223344)"
+              },
+              {
+                "field_id": "course_details",
+                "label": "과정 및 심의 내용",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 회로이론 (SWE2005) 과목이 기초전자 (PHS2002) 학점 인정 여부 심의"
+              },
+              {
+                "field_id": "discussion_summary",
+                "label": "논의 및 결의사항",
+                "type": "textarea",
+                "required": true,
+                "placeholder": "예: 회로이론과의 연관성 및 학점 인정 여부에 대해 결의"
+              }
+            ]
+          },
+          {
+            "section_name": "작성 정보",
+            "fields": [
+              {
+                "field_id": "writer",
+                "label": "작성자",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 교육혁신위원회 위원장 조 수 행"
+              }
+            ]
+          }
+        ],
+        "has_table": true,
+        "source": "empty",
+        "required_fields": [
+          "department",
+          "position",
+          "name",
+          "meeting_type",
+          "meeting_date",
+          "location",
+          "committee_members",
+          "agenda",
+          "student_info",
+          "course_details",
+          "discussion_summary",
+          "writer"
+        ],
+        "created_at": "2026-03-30T01:07:03.432498",
+        "updated_at": "2026-03-30T01:07:03.432498",
+        "form_number": 11
+      },
+      "form_number": 11,
+      "is_specimen": false,
+      "error_message": null
+    }
+  ],
+  "current_index": 0,
+  "status": "completed",
+  "created_at": "2026-03-30T01:05:23.846272",
+  "last_updated": "2026-03-30T01:07:03.484261"
+}

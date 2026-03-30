@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>test</title></head>
+<body>
+<h1>Chat Test</h1>
+<div id="log" style="white-space:pre-wrap;border:1px solid #ccc;height:300px;overflow:auto;padding:10px;"></div>
+<input id="inp" style="width:80%" placeholder="type...">
+<button onclick="go()">Send</button>
+<script>
+function log(t){document.getElementById('log').textContent+=t+'\n';}
+log('JS loaded OK');
+
+async function go(){
+  const msg = document.getElementById('inp').value;
+  if(!msg) return;
+  log('USER: '+msg);
+  document.getElementById('inp').value='';
+  try {
+    const r = await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({session_id:'test1',message:msg})
+    });
+    log('fetch status: '+r.status);
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    let buf='';
+    while(true){
+      const {done,value}=await reader.read();
+      if(done){log('[DONE]');break;}
+      buf+=dec.decode(value,{stream:true});
+      const lines=buf.split('\n');buf=lines.pop();
+      for(const ln of lines){
+        if(ln.startsWith('data: ')){
+          try{
+            const d=JSON.parse(ln.slice(6));
+            if(d.content) document.getElementById('log').textContent+= d.content;
+            if(d.done) log('\n[STREAM DONE]');
+          }catch(e){log('parse err: '+e);}
+        }
+      }
+    }
+  }catch(e){log('ERROR: '+e.message);}
+}
+</script>
+</body></html>

@@ -1,0 +1,31 @@
+{
+  "batch_id": "d1bd68f2",
+  "files": [
+    {
+      "file_id": "23398fce",
+      "original_name": "[DOCU1-1] 물리및공학물리학과 이석형 과목대체 회의록.hwpx",
+      "saved_path": "data\\uploads\\23398fce.hwpx",
+      "status": "error",
+      "pdf_path": null,
+      "schema": null,
+      "form_number": null,
+      "is_specimen": false,
+      "error_message": "LibreOffice가 설치되어 있지 않습니다. HWPX/DOCX 파일을 변환하려면 LibreOffice를 설치하거나, PDF로 변환 후 업로드해주세요."
+    },
+    {
+      "file_id": "2bc233cf",
+      "original_name": "[DOCU2] 교원 연구년 신청서 및 연구계획서 양식.hwpx",
+      "saved_path": "data\\uploads\\2bc233cf.hwpx",
+      "status": "error",
+      "pdf_path": null,
+      "schema": null,
+      "form_number": null,
+      "is_specimen": false,
+      "error_message": "LibreOffice가 설치되어 있지 않습니다. HWPX/DOCX 파일을 변환하려면 LibreOffice를 설치하거나, PDF로 변환 후 업로드해주세요."
+    }
+  ],
+  "current_index": 0,
+  "status": "completed",
+  "created_at": "2026-03-30T00:59:41.271082",
+  "last_updated": "2026-03-30T00:59:41.300852"
+}

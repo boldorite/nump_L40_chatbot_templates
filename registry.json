@@ -1,0 +1,28 @@
+{
+  "forms": {
+    "23": {
+      "form_name": "교수 연구년 허가 신청서",
+      "form_id": "professor_research_year_permission_application",
+      "schema_path": "templates/professor_research_year_permission_application/schema.json",
+      "template_path": "templates/professor_research_year_permission_application/template.j2",
+      "preview_path": "templates/professor_research_year_permission_application/preview.png",
+      "source": "specimen",
+      "original_filename": "[DOCU2] 교원 연구년 신청서 및 연구계획서.hwpx",
+      "model": "qwen3.5:27b-q8_0",
+      "created_at": "2026-03-30T17:21:10.180401",
+      "updated_at": "2026-03-30T17:21:10.180401"
+    },
+    "24": {
+      "form_name": "회의록",
+      "form_id": "committee_meeting_minutes",
+      "schema_path": "templates/committee_meeting_minutes/schema.json",
+      "template_path": "templates/committee_meeting_minutes/template.j2",
+      "preview_path": "templates/committee_meeting_minutes/preview.png",
+      "source": "specimen",
+      "original_filename": "[DOCU1-1] 물리및공학물리학과 교육혁신위원 회의록.hwpx",
+      "model": "qwen3.5:27b-q8_0",
+      "created_at": "2026-03-30T18:44:23.388514",
+      "updated_at": "2026-03-30T18:44:23.388514"
+    }
+  }
+}

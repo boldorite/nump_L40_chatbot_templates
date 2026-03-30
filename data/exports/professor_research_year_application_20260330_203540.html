@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { margin: 20mm; }
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+    font-size: 13px;
+    color: #222;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  .form-header {
+    text-align: center;
+    border-bottom: 3px double #333;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+  .form-header h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    letter-spacing: 2px;
+  }
+  .form-header .meta {
+    font-size: 12px;
+    color: #666;
+  }
+  .section {
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-size: 14px;
+    font-weight: bold;
+    background: #f0f0f0;
+    padding: 6px 10px;
+    border-left: 4px solid #4a5568;
+    margin-bottom: 0;
+  }
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    border: 1px solid #aaa;
+  }
+  .form-table th, .form-table td {
+    border: 1px solid #aaa;
+    padding: 7px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .form-table th.field-label {
+    background: #f8f8f8;
+    font-weight: bold;
+    width: 20%;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .form-table td.field-value {
+    font-size: 13px;
+    min-height: 32px;
+    height: auto;
+    word-break: break-word;
+  }
+  .form-table td.field-value-textarea {
+    font-size: 13px;
+    min-height: 100px;
+    height: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .form-table td.field-value-date {
+    font-size: 13px;
+    min-height: 32px;
+    height: auto;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .data-table th {
+    background: #e8edf2;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 8px;
+    border: 1px solid #aaa;
+  }
+  .data-table td {
+    padding: 5px 8px;
+    border: 1px solid #aaa;
+    font-size: 12px;
+    text-align: center;
+  }
+  .closing-text {
+    font-size: 12px;
+    color: #555;
+    margin-top: 15px;
+  }
+  .closing-statement {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .closing-date {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .closing-signature {
+    text-align: right;
+    margin-top: 20px;
+    padding-right: 40px;
+    font-size: 14px;
+  }
+  .closing-signature .sig-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+  }
+  .closing-recipient {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+  .signature-area {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    margin-top: 30px;
+    padding-right: 30px;
+  }
+  .signature-box {
+    text-align: center;
+  }
+  .signature-box .label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .signature-box .line {
+    width: 100px;
+    border-bottom: 1px solid #333;
+    height: 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="form-header">
+  <h1>교수 연구년 허가 신청서</h1>
+  <div class="meta">작성일: 2026-03-30 &nbsp;&nbsp; 문서번호: </div>
+</div>
+
+  <div class="section">
+    <div class="section-title">신청인 기본 정보</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label">소속</th>
+        <td class="field-value" colspan="3">물리및공학물리학과</td>
+      </tr>
+      <tr>
+        <th class="field-label">직급</th>
+        <td class="field-value" colspan="3">교수</td>
+      </tr>
+      <tr>
+        <th class="field-label">성명</th>
+        <td class="field-value" colspan="3">황승보</td>
+      </tr>
+      <tr>
+        <th class="field-label">생년월일</th>
+        <td class="field-value-date" colspan="3">1975-01-01</td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">연구년 계획 정보</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label">연구년 신청기간</th>
+        <td class="field-value" colspan="3">2026년 3월 1일 ~ 2027년 2월 28일</td>
+      </tr>
+      <tr>
+        <th class="field-label">방문지 국가명</th>
+        <td class="field-value" colspan="3">미국</td>
+      </tr>
+      <tr>
+        <th class="field-label">방문지 학교/기관명</th>
+        <td class="field-value" colspan="3">University of California, Berkeley (UCB)</td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">업무 대체방안</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label" colspan="4">담당 과목 대체방안</th>
+      </tr>
+      <tr>
+        <td class="field-value-textarea" colspan="4">전자기 및 컴퓨터 개론 과목은 동과 김철수 조교수에 의해 대체 강의를 진행할 계획임.</td>
+      </tr>
+      <tr>
+        <th class="field-label">보직·각종 위원 대체방안</th>
+        <td class="field-value" colspan="3">현재 보직이 없어 대체방안이 필요 없음.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">비상 연락처</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label" style="width:15%">비상 연락처 성명</th><td class="field-value" style="width:35%">조수행</td><th class="field-label" style="width:15%">비상 연락처 관계</th><td class="field-value" style="width:35%">동료</td>
+      </tr>
+      <tr>
+        <th class="field-label">비상 연락처 주소</th>
+        <td class="field-value" colspan="3">서울시 강남구 학원로 153, 창조관 301호</td>
+      </tr>
+      <tr>
+        <th class="field-label">비상 연락처 전화번호</th>
+        <td class="field-value" colspan="3">02-1234-5678</td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">추천자 및 서명</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label">추천자 (학과 (부) 장)</th>
+        <td class="field-value" colspan="3">과학기술대학 학장</td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">첨부서류 및 연구계획서</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label">연구과제명 (한글)</th>
+        <td class="field-value" colspan="3">NPU 전용 챗봇 개발 및 최적화 연구</td>
+      </tr>
+      <tr>
+        <th class="field-label">연구과제명 (영문)</th>
+        <td class="field-value" colspan="3">Development and Optimization of NPU-Dedicated Chatbot</td>
+      </tr>
+      <tr>
+        <th class="field-label" colspan="4">연구목적</th>
+      </tr>
+      <tr>
+        <td class="field-value-textarea" colspan="4">NPU 아키텍처에 특화된 효율적인 챗봇 알고리즘을 개발하여 추론 속도를 향상시키는 것임.</td>
+      </tr>
+      <tr>
+        <th class="field-label" colspan="4">연구내용</th>
+      </tr>
+      <tr>
+        <td class="field-value-textarea" colspan="4">UCB 연구실과 협력하여 NPU 하드웨어 특성을 반영한 양자화 기법 및 메모리 최적화 알고리즘을 연구함.</td>
+      </tr>
+      <tr>
+        <th class="field-label" colspan="4">연구의 기대효과 및 활용방안</th>
+      </tr>
+      <tr>
+        <td class="field-value-textarea" colspan="4">개발된 기술은 향후 국내 AI 반도체 기업에 기술 이전되어 차세대 엣지 AI 서비스 성능 향상에 기여할 것임.</td>
+      </tr>
+    </table>
+  </div>
+
+<p class="closing-text">※ 첨부서류 목록: 연구계획서 1부, 추천서 1부, 방문기관 초청장 사본</p>
+
+<div class="closing-statement">
+  <p>본인은 관련 규정에 따라 위와 같이 신청합니다.</p>
+  <p class="closing-date">2026-03-30</p>
+</div>
+
+<div class="closing-signature">
+  <span>추천자</span>
+  <span class="sig-name">과학기술대학 학장 (서명)</span>
+  <span>(인)</span>
+</div>
+<div class="closing-recipient">교무처장 귀하</div>
+
+</body>
+</html>

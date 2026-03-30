@@ -1,0 +1,31 @@
+{
+  "batch_id": "0b76336c",
+  "files": [
+    {
+      "file_id": "06919b4f",
+      "original_name": "[DOCU1-1] 물리및공학물리학과 과목대체 회의록.hwpx",
+      "saved_path": "data\\uploads\\06919b4f.hwpx",
+      "status": "error",
+      "pdf_path": null,
+      "schema": null,
+      "form_number": null,
+      "is_specimen": false,
+      "error_message": "변환 실패: Could not find platform independent libraries <prefix>\nError: source file could not be loaded\n"
+    },
+    {
+      "file_id": "d99e53b1",
+      "original_name": "[DOCU2] 교원 연구년 신청서 및 연구계획서 양식.hwpx",
+      "saved_path": "data\\uploads\\d99e53b1.hwpx",
+      "status": "error",
+      "pdf_path": null,
+      "schema": null,
+      "form_number": null,
+      "is_specimen": false,
+      "error_message": "변환 실패: Could not find platform independent libraries <prefix>\nError: source file could not be loaded\n"
+    }
+  ],
+  "current_index": 0,
+  "status": "completed",
+  "created_at": "2026-03-30T01:02:38.077374",
+  "last_updated": "2026-03-30T01:02:49.690686"
+}

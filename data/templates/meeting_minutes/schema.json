@@ -1,0 +1,140 @@
+{
+  "form_name": "회의록",
+  "form_id": "meeting_minutes",
+  "description": "교육혁신위원회 등 각종 위원회 회의의 일시, 장소, 참석자, 상정 안건 및 논의 결과를 기록하는 공식 문서입니다.",
+  "prompt_prefix": "회의록 작성 시 회의의 기본 정보(일시, 장소), 참석자 명단(소속, 직책, 성함), 상정 안건 및 그 내용, 논의 결과와 결의사항을 명확히 구분하여 작성하십시오.",
+  "sections": [
+    {
+      "section_name": "회의 기본 정보",
+      "fields": [
+        {
+          "field_id": "meeting_title",
+          "label": "회의 명칭",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 2026학년도 물리및공학물리 교육혁신위원회"
+        },
+        {
+          "field_id": "meeting_date",
+          "label": "일시",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 2025. 1. 20. (화요일) 16:00"
+        },
+        {
+          "field_id": "meeting_location",
+          "label": "장소",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 창조관 224호"
+        }
+      ]
+    },
+    {
+      "section_name": "참석자 명단",
+      "fields": [
+        {
+          "field_id": "attendee_list",
+          "label": "교육혁신위원회 구성 및 참석자",
+          "type": "table",
+          "required": true,
+          "table_columns": [
+            "소속",
+            "직책",
+            "성함"
+          ],
+          "row_group": 1
+        }
+      ]
+    },
+    {
+      "section_name": "상정 안건",
+      "fields": [
+        {
+          "field_id": "agenda_subject",
+          "label": "안건",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 졸업 사정 과목 대체"
+        },
+        {
+          "field_id": "agenda_target_student",
+          "label": "대상 학생 (이름 및 학번)",
+          "type": "text",
+          "required": false,
+          "placeholder": "예: 사사사 (학번202011223344)"
+        },
+        {
+          "field_id": "agenda_description",
+          "label": "안건 내용 설명",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "예: 위 학생이 수강한 소프트웨어학부의 전공과목인 회로이론 (SWE2005) 이 물리및공학물리학의 전공인 기초전자 (PHS2002) 로 전공 학점 인정 여부에 대해 심의함."
+        }
+      ]
+    },
+    {
+      "section_name": "논의 및 결의사항",
+      "fields": [
+        {
+          "field_id": "discussion_result",
+          "label": "논의 및 결의사항",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "예: 1) 사사사학생이 타 전공에서 수강한 회로이론 (SWE2005) 과목이 물리및공학물리학의 전공인 기초전자 (PHS2002) 과목과 연관성이 높음을 결의함. 2) 이에 위 회로이론 과목 수강을 본 과의 전공학점 수강 인정으로 결의함"
+        }
+      ]
+    },
+    {
+      "section_name": "서명란",
+      "fields": [
+        {
+          "field_id": "committee_name",
+          "label": "위원회명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 물리및공학물리 교육혁신위원회"
+        },
+        {
+          "field_id": "chairman_role",
+          "label": "직책",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 위원장"
+        },
+        {
+          "field_id": "chairman_name",
+          "label": "성명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 조수행"
+        },
+        {
+          "field_id": "signature_image",
+          "label": "서명 또는 날인",
+          "type": "text",
+          "required": true,
+          "placeholder": "서명 이미지 또는 날인 첨부"
+        }
+      ]
+    }
+  ],
+  "has_table": true,
+  "source": "specimen",
+  "required_fields": [
+    "meeting_title",
+    "meeting_date",
+    "meeting_location",
+    "attendee_list",
+    "agenda_subject",
+    "agenda_description",
+    "discussion_result",
+    "committee_name",
+    "chairman_role",
+    "chairman_name",
+    "signature_image"
+  ],
+  "created_at": "2026-03-30T19:12:55.739672",
+  "updated_at": "2026-03-30T19:12:55.739672",
+  "form_number": 2
+}

@@ -1,0 +1,254 @@
+{
+  "form_name": "교수 연구년 허가 신청서",
+  "form_id": "professor_research_year_application",
+  "description": "교수가 연구년 수행을 위해 신청하는 서식으로, 신청인 정보, 연구 기간, 방문 기관, 업무 대체 방안, 비상 연락처 및 추천자 서명란을 포함한다.",
+  "prompt_prefix": "교수 연구년 허가 신청서를 작성할 때는 신청인의 소속과 직급, 연구 기간, 방문 기관명, 연구년 중 업무 대체 방안 (담당 과목 및 보직), 비상 연락처 정보를 정확하게 입력하고, 추천자의 서명란과 첨부서류 목록을 포함해야 합니다.",
+  "sections": [
+    {
+      "section_name": "신청인 기본 정보",
+      "fields": [
+        {
+          "field_id": "applicant_department",
+          "label": "소속",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 과학기술융합대학 물리 및 공학물리 전공",
+          "row_group": 1
+        },
+        {
+          "field_id": "applicant_rank",
+          "label": "직급",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 교수",
+          "row_group": 2
+        },
+        {
+          "field_id": "applicant_name",
+          "label": "성명",
+          "type": "text",
+          "required": true,
+          "placeholder": "신청자 실명 입력",
+          "row_group": 3
+        },
+        {
+          "field_id": "applicant_dob",
+          "label": "생년월일",
+          "type": "date",
+          "required": true,
+          "placeholder": "예: 1975. 1. 20.",
+          "row_group": 4
+        }
+      ]
+    },
+    {
+      "section_name": "연구년 계획 정보",
+      "fields": [
+        {
+          "field_id": "research_period",
+          "label": "연구년 신청기간",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 2022 년 3 월 1 일 – 2023 년 2 월 28 일 (12 개월)",
+          "row_group": 5
+        },
+        {
+          "field_id": "visit_country",
+          "label": "방문지 국가명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 대한민국",
+          "row_group": 6
+        },
+        {
+          "field_id": "visit_institution",
+          "label": "방문지 학교/기관명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 연세대학교 미래캠퍼스",
+          "row_group": 7
+        }
+      ]
+    },
+    {
+      "section_name": "업무 대체방안",
+      "fields": [
+        {
+          "field_id": "course_replacement",
+          "label": "담당 과목 대체방안",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "예: 전자기학, 대체 강의자 수배 완료"
+        },
+        {
+          "field_id": "committee_replacement",
+          "label": "보직·각종 위원 대체방안",
+          "type": "text",
+          "required": true,
+          "placeholder": "해당 사항이 없으면 '해당 없음' 입력"
+        }
+      ]
+    },
+    {
+      "section_name": "비상 연락처",
+      "fields": [
+        {
+          "field_id": "emergency_contact_name",
+          "label": "비상 연락처 성명",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 어머니",
+          "row_group": 8
+        },
+        {
+          "field_id": "emergency_contact_relation",
+          "label": "비상 연락처 관계",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 모",
+          "row_group": 8
+        },
+        {
+          "field_id": "emergency_contact_address",
+          "label": "비상 연락처 주소",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 서울 서대문구 홍제동 55"
+        },
+        {
+          "field_id": "emergency_contact_phone",
+          "label": "비상 연락처 전화번호",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 02-123-4567"
+        }
+      ]
+    },
+    {
+      "section_name": "추천자 및 서명",
+      "fields": [
+        {
+          "field_id": "recommender_name",
+          "label": "추천자 (학과 (부) 장)",
+          "type": "text",
+          "required": true,
+          "placeholder": "추천자 성명 입력"
+        },
+        {
+          "field_id": "recommender_signature",
+          "label": "추천자 서명/날인",
+          "type": "text",
+          "required": true,
+          "placeholder": "인 또는 서명"
+        },
+        {
+          "field_id": "application_date",
+          "label": "신청일",
+          "type": "date",
+          "required": true,
+          "placeholder": "예: 2022 년 4 월 27 일"
+        },
+        {
+          "field_id": "applicant_signature_name",
+          "label": "신청인",
+          "type": "text",
+          "required": true,
+          "placeholder": "신청인 실명"
+        },
+        {
+          "field_id": "applicant_signature_seal",
+          "label": "신청인 날인",
+          "type": "text",
+          "required": true,
+          "placeholder": "(인)"
+        },
+        {
+          "field_id": "recipient",
+          "label": "수신처",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 연세대학교 총장 귀하"
+        }
+      ]
+    },
+    {
+      "section_name": "첨부서류 및 연구계획서",
+      "fields": [
+        {
+          "field_id": "attached_documents",
+          "label": "첨부서류 목록",
+          "type": "text",
+          "required": true,
+          "placeholder": "예: 연구계획서 1 부"
+        },
+        {
+          "field_id": "research_plan_title_kr",
+          "label": "연구과제명 (한글)",
+          "type": "text",
+          "required": true,
+          "placeholder": "연구 주제 한글 표기"
+        },
+        {
+          "field_id": "research_plan_title_en",
+          "label": "연구과제명 (영문)",
+          "type": "text",
+          "required": true,
+          "placeholder": "연구 주제 영문 표기"
+        },
+        {
+          "field_id": "research_purpose",
+          "label": "연구목적",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "연구의 목적과 기대효과 상세 기술"
+        },
+        {
+          "field_id": "research_content",
+          "label": "연구내용",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "구체적인 연구 내용 및 방법론 기술"
+        },
+        {
+          "field_id": "research_impact",
+          "label": "연구의 기대효과 및 활용방안",
+          "type": "textarea",
+          "required": true,
+          "placeholder": "연구 결과의 기대 효과 및 활용 방안 기술"
+        }
+      ]
+    }
+  ],
+  "has_table": false,
+  "source": "specimen",
+  "required_fields": [
+    "applicant_department",
+    "applicant_rank",
+    "applicant_name",
+    "applicant_dob",
+    "research_period",
+    "visit_country",
+    "visit_institution",
+    "course_replacement",
+    "committee_replacement",
+    "emergency_contact_name",
+    "emergency_contact_relation",
+    "emergency_contact_address",
+    "emergency_contact_phone",
+    "recommender_name",
+    "recommender_signature",
+    "application_date",
+    "applicant_signature_name",
+    "applicant_signature_seal",
+    "recipient",
+    "attached_documents",
+    "research_plan_title_kr",
+    "research_plan_title_en",
+    "research_purpose",
+    "research_content",
+    "research_impact"
+  ],
+  "created_at": "2026-03-30T19:10:32.848841",
+  "updated_at": "2026-03-30T19:10:32.848841",
+  "form_number": 1
+}

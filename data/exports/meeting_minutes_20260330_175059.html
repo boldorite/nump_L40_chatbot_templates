@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { margin: 20mm; }
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+    font-size: 13px;
+    color: #222;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  .form-header {
+    text-align: center;
+    border-bottom: 3px double #333;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+  .form-header h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    letter-spacing: 2px;
+  }
+  .form-header .meta {
+    font-size: 12px;
+    color: #666;
+  }
+  .section {
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-size: 14px;
+    font-weight: bold;
+    background: #f0f0f0;
+    padding: 6px 10px;
+    border-left: 4px solid #4a5568;
+    margin-bottom: 0;
+  }
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    border: 1px solid #aaa;
+  }
+  .form-table th, .form-table td {
+    border: 1px solid #aaa;
+    padding: 7px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .form-table th.field-label {
+    background: #f8f8f8;
+    font-weight: bold;
+    width: 20%;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .form-table td.field-value {
+    font-size: 13px;
+    min-height: 32px;
+    height: auto;
+    word-break: break-word;
+  }
+  .form-table td.field-value-textarea {
+    font-size: 13px;
+    min-height: 100px;
+    height: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .form-table td.field-value-date {
+    font-size: 13px;
+    min-height: 32px;
+    height: auto;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .data-table th {
+    background: #e8edf2;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 8px;
+    border: 1px solid #aaa;
+  }
+  .data-table td {
+    padding: 5px 8px;
+    border: 1px solid #aaa;
+    font-size: 12px;
+    text-align: center;
+  }
+  .closing-text {
+    font-size: 12px;
+    color: #555;
+    margin-top: 15px;
+  }
+  .closing-statement {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .closing-date {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .closing-signature {
+    text-align: right;
+    margin-top: 20px;
+    padding-right: 40px;
+    font-size: 14px;
+  }
+  .closing-signature .sig-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+  }
+  .closing-recipient {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+  .signature-area {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    margin-top: 30px;
+    padding-right: 30px;
+  }
+  .signature-box {
+    text-align: center;
+  }
+  .signature-box .label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .signature-box .line {
+    width: 100px;
+    border-bottom: 1px solid #333;
+    height: 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="form-header">
+  <h1>회의록</h1>
+  <div class="meta">작성일: 2026-03-30 &nbsp;&nbsp; 문서번호: </div>
+</div>
+
+  <div class="section">
+    <div class="section-title">회의 기본 정보</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label">위원회 명칭</th>
+        <td class="field-value" colspan="3">물리및공학물리 교육혁신 위원회</td>
+      </tr>
+      <tr>
+        <th class="field-label">일시</th>
+        <td class="field-value-date" colspan="3"></td>
+      </tr>
+      <tr>
+        <th class="field-label">장소</th>
+        <td class="field-value" colspan="3"></td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">참석자 명단</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label" colspan="4">참석자</th>
+      </tr>
+      <tr>
+        <td colspan="4" style="padding:0;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>소속</th>
+        <th>직책</th>
+        <th>성함</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              
+              <tr>
+                <td>물리학과</td>
+          <td>정교수</td>
+          <td>A 교수</td>
+              </tr>
+              
+              <tr>
+                <td>물리학과</td>
+          <td>정교수</td>
+          <td>B 교수</td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">상정 안건</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label">안건 제목</th>
+        <td class="field-value" colspan="3">중간고사 일정 변경</td>
+      </tr>
+      <tr>
+        <th class="field-label" colspan="4">안건 상세 내용</th>
+      </tr>
+      <tr>
+        <td class="field-value-textarea" colspan="4">학생들의 요청에 따라 중간고사 일정을 5 월 3 일에서 5 월 10 일로 연기하는 안건</td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">논의 및 결의사항</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label" colspan="4">논의 및 결의 내용</th>
+      </tr>
+      <tr>
+        <td class="field-value-textarea" colspan="4">학생들의 요청을 반영하여 중간고사 일정을 5 월 3 일에서 5 월 10 일로 변경하는 것을 의결함</td>
+      </tr>
+    </table>
+  </div>
+  <div class="section">
+    <div class="section-title">서명란</div>
+    <table class="form-table">
+      <tr>
+        <th class="field-label" style="width:15%">작성자 직함</th><td class="field-value" style="width:35%"></td><th class="field-label" style="width:15%">작성자 성명</th><td class="field-value" style="width:35%"></td>
+      </tr>
+    </table>
+  </div>
+
+
+<div class="closing-statement">
+  <p>본인은 관련 규정에 따라 위와 같이 신청합니다.</p>
+  <p class="closing-date">　　년　　월　　일</p>
+</div>
+
+<div class="closing-signature">
+  <span>신청인</span>
+  <span class="sig-name"></span>
+  <span>(인)</span>
+</div>
+<div class="closing-recipient">○○○○ 귀하</div>
+
+</body>
+</html>

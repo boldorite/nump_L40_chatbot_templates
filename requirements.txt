@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+openai
+pdfplumber
+pymupdf
+python-magic
+jinja2
+pydantic>=2.0
+python-multipart
+aiofiles
+python-dotenv
+python-docx

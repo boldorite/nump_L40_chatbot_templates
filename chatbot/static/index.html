@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUMP Chatbot with Templates</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;margin:0;height:100vh;display:flex;flex-direction:column;background:#f0f2f5;overflow:hidden}
+    .msg{max-width:85%;padding:10px 14px;border-radius:16px;line-height:1.4;font-size:14px;word-break:break-word}
+    #chatbox.fs-sm .msg{font-size:12px;padding:8px 12px}
+    #chatbox.fs-lg .msg{font-size:16px;padding:12px 16px}
+    #chatbox.fs-xl .msg{font-size:18px;padding:14px 18px}
+    .sys-notice{text-align:center;padding:4px 0}
+    .sys-notice span{display:inline-block;background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd;border-radius:8px;padding:6px 14px;font-size:13px;line-height:1.3}
+    #chatbox.fs-sm .sys-notice span{font-size:11px;padding:4px 10px}
+    #chatbox.fs-lg .sys-notice span{font-size:15px;padding:7px 16px}
+    #chatbox.fs-xl .sys-notice span{font-size:17px;padding:8px 18px}
+    .fs-btn{width:28px;height:22px;border:1px solid #d1d5db;display:flex;align-items:center;justify-content:center;font-weight:700;color:#6b7280;cursor:pointer;transition:all .15s;background:#fff}
+    .fs-btn:hover{background:#f3f4f6;color:#374151;border-color:#9ca3af}
+    .fs-btn:first-child{border-radius:4px 4px 0 0;border-bottom:none}
+    .fs-btn:last-child{border-radius:0 0 4px 4px}
+    .msg.user{background:#3b82f6;color:#fff;border-bottom-right-radius:4px;margin-left:auto}
+    .msg.bot{background:#fff;color:#1e293b;border-bottom-left-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+    .msg pre{background:#f1f5f9;padding:8px 12px;border-radius:8px;overflow-x:auto;font-size:13px;margin:8px 0}
+    #chatbox{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+    .badge{padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+    .dots span{display:inline-block;width:8px;height:8px;background:#94a3b8;border-radius:50%;animation:bn 1.4s infinite;margin:0 2px}
+    .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+    @keyframes bn{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+    #main-area{flex:1;display:flex;overflow:hidden}
+    #chat-col{flex:1;display:flex;flex-direction:column;min-width:0}
+    #right-col{width:0;overflow:hidden;transition:width .3s;border-left:1px solid #e2e8f0;display:flex;flex-direction:column;background:#fff}
+    #right-col.open{width:50%}
+    /* 서식 목록: 최대 4개 높이 */
+    #tpl-list-wrap{max-height:140px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:6px;background:#fff}
+    .tpl-item{cursor:pointer;padding:6px 10px;border-bottom:1px solid #f1f5f9;transition:background .1s;display:flex;align-items:center;gap:8px}
+    .tpl-item:last-child{border-bottom:none}
+    .tpl-item:hover{background:#eff6ff}
+    .tpl-item.sel{background:#dbeafe;font-weight:600}
+    .tpl-item .dot{width:6px;height:6px;border-radius:50%;background:#93c5fd;flex-shrink:0}
+    .tpl-item.sel .dot{background:#3b82f6}
+    /* 미리보기 */
+    #preview-area{flex:1;display:flex;flex-direction:column;min-height:0}
+    .toolbar{padding:8px 12px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#fafafa;flex-shrink:0}
+    #doc-frame{flex:1;border:none;width:100%;background:#fff}
+  </style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header class="bg-white border-b px-4 py-3 shadow-sm shrink-0">
+  <div class="flex items-center justify-between flex-wrap gap-2">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h1 class="text-2xl font-bold text-gray-800">NUMP Chatbot with Templates</h1>
+      <span id="b-folder" class="badge bg-indigo-100 text-indigo-800 hidden" style="font-size:14px;padding:4px 14px"></span>
+      <span id="b-tpl" class="badge bg-gray-100 text-gray-500" style="font-size:14px;padding:4px 14px">서식 OFF</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <input type="file" id="fi" webkitdirectory multiple style="display:none" onchange="onFolderPicked(this.files)">
+      <button onclick="confirmOpenFolder()" class="flex items-center gap-1 px-4 py-2.5 rounded-lg text-base font-medium bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+        서식 폴더 열기
+      </button>
+      <button onclick="tplOff()" id="btn-off" class="hidden px-4 py-2.5 rounded-lg text-base font-medium bg-orange-50 text-orange-600 hover:bg-orange-100">서식 OFF</button>
+      <button onclick="newChat()" class="px-4 py-2.5 rounded-lg text-base font-medium bg-red-50 text-red-600 hover:bg-red-100">새 대화</button>
+    </div>
+  </div>
+</header>
+
+<!-- 메인 -->
+<div id="main-area">
+  <!-- 좌: 채팅 -->
+  <div id="chat-col">
+    <div id="chatbox">
+      <div class="msg bot">
+        안녕하세요! <b>NUMP 챗봇</b>입니다.<br><br>
+        서식이 선택되어 있으면 대화를 통해 오른쪽 서식을 실시간으로 수정할 수 있습니다.<br>
+        서식이 선택되어 있지 않으면 일반 챗봇과 동일하게 작동합니다.<br>
+        <span class="text-gray-400" style="font-size:12px">서식 폴더 열기 → 서식 선택 → 대화 → PDF/DOCX 저장</span>
+      </div>
+    </div>
+    <div class="border-t bg-white px-4 py-3 shrink-0">
+      <div class="flex gap-2 items-end">
+        <div class="flex flex-col shrink-0" style="margin-bottom:6px">
+          <div class="fs-btn" onclick="changeFontSize(1)" title="글자 크게">A+</div>
+          <div class="fs-btn" onclick="changeFontSize(-1)" title="글자 작게">A−</div>
+        </div>
+        <textarea id="ta" rows="1" placeholder="메시지를 입력하세요..."
+          class="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-400"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"
+          oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,150)+'px'"
+          id="ta-style" style="resize:none"></textarea>
+        <button onclick="send()" id="btn-send" class="px-5 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 text-sm font-medium">전송</button>
+        <button onclick="stopStream()" id="btn-stop" class="hidden px-5 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 text-sm font-medium">중단</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 우: 서식목록(위) + 미리보기(아래) -->
+  <div id="right-col">
+    <!-- 서식 목록 -->
+    <div style="padding:8px 12px;background:#f8fafc;border-bottom:1px solid #e2e8f0;flex-shrink:0">
+      <div class="text-xs font-bold text-gray-500 mb-1">서식 목록</div>
+      <div id="tpl-list-wrap"></div>
+    </div>
+    <!-- 미리보기 + 버튼 -->
+    <div id="preview-area">
+      <div class="toolbar">
+        <span class="font-bold text-sm text-gray-700" id="doc-hdr">미리보기</span>
+        <span id="doc-status" class="hidden text-xs px-2 py-0.5 bg-red-500 text-white rounded-full font-bold" style="animation:blink 0.8s infinite">갱신 중</span>
+        <div class="flex gap-1 ml-auto flex-wrap">
+          <button onclick="expDoc('pdf')" class="px-2 py-1 text-xs rounded bg-red-600 text-white hover:bg-red-700">PDF</button>
+          <button onclick="expDoc('docx')" class="px-2 py-1 text-xs rounded bg-blue-600 text-white hover:bg-blue-700">DOCX</button>
+          <button onclick="expDoc('html')" class="px-2 py-1 text-xs rounded bg-green-600 text-white hover:bg-green-700">HTML</button>
+        </div>
+      </div>
+      <iframe id="doc-frame" sandbox="allow-same-origin" style="flex:1;border:none;width:100%"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+let sid=null,folderName=null,tpls=[],selIdx=-1,tplOn=false,genData={},streaming=false,abortCtrl=null;
+let fontLevel=0; // -1=small, 0=normal, 1=large, 2=xlarge
+const fsSizes={'-1':'12px','0':'14px','1':'16px','2':'18px'};
+const fsPad={'-1':'6px 10px','0':'10px 14px','1':'12px 16px','2':'14px 18px'};
+function changeFontSize(dir){
+  fontLevel=Math.max(-1,Math.min(2,fontLevel+dir));
+  const box=document.getElementById('chatbox');
+  box.classList.remove('fs-sm','fs-lg','fs-xl');
+  if(fontLevel===-1)box.classList.add('fs-sm');
+  if(fontLevel===1)box.classList.add('fs-lg');
+  if(fontLevel===2)box.classList.add('fs-xl');
+  const ta=document.getElementById('ta');
+  ta.style.fontSize=fsSizes[fontLevel];
+  ta.style.padding=fsPad[fontLevel];
+}
+
+// ═══ Folder ═══
+function onFolderPicked(files){
+  if(!files||!files.length)return;
+  folderName=(files[0].webkitRelativePath||'').split('/')[0]||'folder';
+  const groups={};
+  for(const f of files){const p=f.webkitRelativePath.split('/');if(p.length<3)continue;if(!groups[p[1]])groups[p[1]]={};groups[p[1]][p[p.length-1]]=f;}
+  const proms=[];
+  for(const[sub,fm]of Object.entries(groups)){
+    if(!fm['schema.json'])continue;
+    proms.push((async()=>{try{const schema=JSON.parse(await fm['schema.json'].text());const tplJ2=fm['template.j2']?await fm['template.j2'].text():null;return{name:sub,schema,tplJ2};}catch(e){return null;}})());
+  }
+  Promise.all(proms).then(res=>{
+    tpls=res.filter(Boolean).sort((a,b)=>a.name.localeCompare(b.name));
+    if(!tpls.length){sysMsg('서식 없음');return;}
+    updBadges();openRight();drawList();
+    // 첫 번째 서식 자동 선택
+    pickTpl(0);
+  });
+  document.getElementById('fi').value='';
+}
+
+// ═══ 서식 목록 ═══
+function drawList(){
+  const wrap=document.getElementById('tpl-list-wrap');
+  wrap.innerHTML='';
+  tpls.forEach((t,i)=>{
+    const div=document.createElement('div');
+    div.className=`tpl-item${i===selIdx?' sel':''}`;
+    const num = t.schema.form_number||i+1;
+    const desc = t.schema.description||'';
+    const short = desc.length>30 ? desc.slice(0,30)+'…' : desc;
+    div.innerHTML=`<div class="dot"></div><div class="flex-1 min-w-0"><div class="text-sm truncate"><span class="text-xs text-gray-400 mr-1">#${num}</span>${esc(t.schema.form_name||t.name)} <span class="text-xs text-gray-400">${esc(short)}</span></div></div><button class="del-btn text-gray-300 hover:text-red-500 text-xs px-1 shrink-0" title="삭제">&times;</button>`;
+    div.querySelector('.del-btn').onclick=(e)=>{e.stopPropagation();deleteTpl(i);};
+    div.onclick=()=>pickTpl(i);
+    wrap.appendChild(div);
+  });
+}
+
+async function deleteTpl(i){
+  const t=tpls[i];
+  if(!confirm(`"${t.schema.form_name||t.name}" 서식을 정말 삭제하시겠습니까?\n서버의 관련 파일도 모두 삭제됩니다.`))return;
+  try{
+    const r=await fetch('/api/delete-template',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({folder_name:t.name})});
+    const d=await r.json();
+    if(d.deleted){
+      tpls.splice(i,1);
+      if(selIdx===i){selIdx=-1;tplOn=false;genData={};closeRight();updBadges();}
+      else if(selIdx>i)selIdx--;
+      drawList();
+      sysMsg(`"${t.schema.form_name||t.name}" 서식이 삭제되었습니다.`);
+    }else sysMsg('삭제 실패: '+(d.error||''));
+  }catch(e){sysMsg('오류: '+e.message);}
+}
+
+async function pickTpl(i){
+  if(tplOn && Object.keys(genData).length){
+    if(!confirm('현재 작업 중인 서식이 있습니다. 저장하지 않은 내용은 사라집니다.\n다른 서식으로 전환하시겠습니까?'))return;
+  }
+  selIdx=i;const t=tpls[i];
+  // 목록 하이라이트
+  document.querySelectorAll('.tpl-item').forEach((el,j)=>el.classList.toggle('sel',j===i));
+  document.getElementById('doc-hdr').textContent=t.schema.form_name||t.name;
+
+  if(!t.tplJ2){
+    document.getElementById('doc-frame').srcdoc='<p style="padding:20px;color:#999">template.j2 없음</p>';
+    return;
+  }
+  // 서버에 업로드
+  if(!sid)sid=Math.random().toString(36).slice(2,10);
+  try{
+    const r=await fetch('/api/session/upload-template',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid,schema:t.schema,template_j2:t.tplJ2,folder_name:t.name})});
+    const d=await r.json();if(d.session_id)sid=d.session_id;
+    tplOn=true;genData={};    updBadges();refreshPreview();
+  }catch(e){sysMsg('서버 연결 실패: '+e.message);}
+}
+
+// ═══ State ═══
+function confirmOpenFolder(){
+  if(tplOn){
+    if(!confirm('현재 작업 중인 서식이 있습니다. 저장하지 않은 내용은 사라집니다.\n새 서식 폴더를 여시겠습니까?'))return;
+  }
+  document.getElementById('fi').click();
+}
+function tplOff(){
+  if(tplOn){
+    if(!confirm('현재 작업 중인 서식이 있습니다. 저장하지 않은 내용은 사라집니다.\n서식을 해제하시겠습니까?'))return;
+  }
+  tplOn=false;genData={};
+  if(sid)fetch('/api/session/toggle-template',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid,enabled:false})}).catch(()=>{});
+  closeRight();updBadges();sysMsg('서식 OFF — 일반 대화 모드');
+}
+function updBadges(){
+  const bf=document.getElementById('b-folder'),bt=document.getElementById('b-tpl'),bo=document.getElementById('btn-off');
+  if(folderName){bf.textContent=`폴더: ${folderName}`;bf.classList.remove('hidden');}else bf.classList.add('hidden');
+  if(tplOn&&selIdx>=0){bt.className='badge bg-green-100 text-green-800';bt.textContent=`서식 ON: ${tpls[selIdx].schema.form_name||''}`;bo.classList.remove('hidden');}
+  else{bt.className='badge bg-gray-100 text-gray-500';bt.textContent='서식 OFF';bo.classList.add('hidden');}
+}
+
+// ═══ Right column ═══
+function openRight(){document.getElementById('right-col').classList.add('open');}
+function closeRight(){document.getElementById('right-col').classList.remove('open');}
+
+async function refreshPreview(){
+  if(!sid)return;
+  try{
+    const r=await fetch('/api/render-preview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid,filled_data:genData})});
+    const html=await r.text();
+    const frame=document.getElementById('doc-frame');
+    return new Promise(resolve=>{
+      frame.onload=()=>resolve();
+      frame.src=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));
+    });
+  }catch(e){}
+}
+
+
+async function expDoc(fmt){
+  if(!sid||selIdx<0){sysMsg('서식을 먼저 선택하세요.');return;}
+  sysMsg(`${fmt.toUpperCase()} 생성 중...`);
+  try{const r=await fetch('/api/export',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid,format:fmt,filled_data:genData})});
+    if(r.ok){const blob=await r.blob();const cd=r.headers.get('content-disposition')||'';let fn=`doc.${fmt}`;const m=cd.match(/filename="?([^";]+)/);if(m)fn=m[1];
+      const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fn;a.click();sysMsg(`${fmt.toUpperCase()} 다운로드: ${fn}`);}
+    else{const e=await r.json();sysMsg('실패: '+(e.error||''));}
+  }catch(e){sysMsg('오류: '+e.message);}
+}
+
+// ═══ Chat ═══
+async function send(){
+  const ta=document.getElementById('ta');const msg=ta.value.trim();if(!msg||streaming)return;
+  ta.value='';ta.style.height='auto';
+  if(!sid)sid=Math.random().toString(36).slice(2,10);
+  addMsg('user',msg);const dot=addDots();streaming=true;
+  document.getElementById('btn-send').classList.add('hidden');document.getElementById('btn-stop').classList.remove('hidden');
+  abortCtrl=new AbortController();let el=null,full='',buf='';
+  try{
+    const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid,message:msg}),signal:abortCtrl.signal});
+    const hSid=r.headers.get('X-Session-Id');if(hSid)sid=hSid;
+    const reader=r.body.getReader();const dec=new TextDecoder();
+    while(true){const{done,value}=await reader.read();if(done)break;
+      buf+=dec.decode(value,{stream:true});const lines=buf.split('\n');buf=lines.pop()||'';
+      for(const ln of lines){if(!ln.startsWith('data: '))continue;
+        try{const d=JSON.parse(ln.slice(6));
+          if(d.content){if(!el){dot.remove();el=addMsg('bot','');}full+=d.content;el.innerHTML=md(full);scr();}
+          if(d.done&&d.session_id)sid=d.session_id;
+        }catch(e){}
+      }
+    }
+  }catch(e){if(e.name==='AbortError'){if(el){full+='\n\n*(중단됨)*';el.innerHTML=md(full);}}else{dot.remove();addMsg('bot','오류: '+e.message);}}
+  if(!el){dot.remove();addMsg('bot','(응답 없음)');}
+  streaming=false;abortCtrl=null;
+  document.getElementById('btn-stop').classList.add('hidden');document.getElementById('btn-send').classList.remove('hidden');
+  if(tplOn&&selIdx>=0)autoFill();
+}
+async function autoFill(){
+  showLoading();
+  try{const r=await fetch('/api/generate-doc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid})});
+    const d=await r.json();if(d.filled_data){genData=d.filled_data;await refreshPreview();}
+  }catch(e){}
+  hideLoading();
+}
+function showLoading(){document.getElementById('doc-status').classList.remove('hidden');}
+function hideLoading(){document.getElementById('doc-status').classList.add('hidden');}
+function stopStream(){if(abortCtrl)abortCtrl.abort();}
+
+// ═══ UI ═══
+function addMsg(r,t){const box=document.getElementById('chatbox');const d=document.createElement('div');d.className=`msg ${r==='user'?'user':'bot'}`;d.innerHTML=r==='user'?esc(t):md(t);box.appendChild(d);scr();return d;}
+function sysMsg(t){const box=document.getElementById('chatbox');const d=document.createElement('div');d.className='sys-notice';d.innerHTML=`<span>${esc(t)}</span>`;box.appendChild(d);scr();}
+function addDots(){const box=document.getElementById('chatbox');const d=document.createElement('div');d.className='msg bot dots';d.innerHTML='<span></span><span></span><span></span>';box.appendChild(d);scr();return d;}
+function scr(){const b=document.getElementById('chatbox');b.scrollTop=b.scrollHeight;}
+function newChat(){
+  if(sid)fetch('/api/session/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid})}).catch(()=>{});
+  sid=null;folderName=null;tpls=[];selIdx=-1;tplOn=false;genData={};updBadges();closeRight();
+  document.getElementById('tpl-list-wrap').innerHTML='';
+  document.getElementById('chatbox').innerHTML=`<div class="msg bot">안녕하세요! <b>NUMP 챗봇</b>입니다.<br><br>서식이 선택되어 있으면 대화를 통해 오른쪽 서식을 실시간으로 수정할 수 있습니다.<br>서식이 선택되어 있지 않으면 일반 챗봇과 동일하게 작동합니다.<br><span style="font-size:12px;color:#9ca3af">서식 폴더 열기 → 서식 선택 → 대화 → PDF/DOCX 저장</span></div>`;
+}
+function md(t){let h=esc(t);h=h.replace(/```(\w*)\n([\s\S]*?)```/g,'<pre><code>$2</code></pre>');h=h.replace(/`([^`]+)`/g,'<code class="bg-gray-100 px-1 rounded text-sm">$1</code>');h=h.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');h=h.replace(/\*(.*?)\*/g,'<em>$1</em>');h=h.replace(/\n/g,'<br>');return h;}
+function esc(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+</script>
+</body>
+</html>
