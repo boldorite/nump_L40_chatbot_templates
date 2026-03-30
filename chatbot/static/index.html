@@ -62,6 +62,7 @@
       <h1 class="text-2xl font-bold text-gray-800">NUMP Chatbot with Templates</h1>
       <span id="b-folder" class="badge bg-indigo-100 text-indigo-800 hidden" style="font-size:14px;padding:4px 14px"></span>
       <span id="b-tpl" class="badge bg-gray-100 text-gray-500" style="font-size:14px;padding:4px 14px">서식 OFF</span>
+      <span id="b-model" class="badge bg-gray-50 text-gray-400" style="font-size:11px;padding:2px 8px"></span>
     </div>
     <div class="flex items-center gap-2">
       <input type="file" id="fi" webkitdirectory multiple style="display:none" onchange="onFolderPicked(this.files)">
@@ -146,6 +147,9 @@ function changeFontSize(dir){
   ta.style.fontSize=fsSizes[fontLevel];
   ta.style.padding=fsPad[fontLevel];
 }
+
+// 모델명 로드
+fetch('/api/model').then(r=>r.json()).then(d=>{document.getElementById('b-model').textContent='LLM: '+d.model;}).catch(()=>{});
 
 // ═══ Folder ═══
 function onFolderPicked(files){
