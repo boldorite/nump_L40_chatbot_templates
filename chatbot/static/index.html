@@ -30,6 +30,8 @@
     .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
     @keyframes bn{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+    #btn-mic.recording{background:#fee2e2;color:#dc2626;animation:pulse-mic 1s infinite}
+    @keyframes pulse-mic{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.4)}50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}}
     #main-area{flex:1;display:flex;overflow:hidden}
     #chat-col{flex:1;display:flex;flex-direction:column;min-width:0}
     #right-col{width:0;overflow:hidden;transition:width .3s;border-left:1px solid #e2e8f0;display:flex;flex-direction:column;background:#fff}
@@ -93,6 +95,9 @@
           onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"
           oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,150)+'px'"
           id="ta-style" style="resize:none"></textarea>
+        <button onclick="toggleMic()" id="btn-mic" class="px-3 py-3 bg-gray-100 text-gray-500 rounded-xl hover:bg-gray-200 text-sm font-medium" title="음성 입력">
+          <svg id="mic-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4M12 15a3 3 0 003-3V5a3 3 0 00-6 0v7a3 3 0 003 3z"/></svg>
+        </button>
         <button onclick="send()" id="btn-send" class="px-5 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 text-sm font-medium">전송</button>
         <button onclick="stopStream()" id="btn-stop" class="hidden px-5 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 text-sm font-medium">중단</button>
       </div>
@@ -302,6 +307,64 @@ async function autoFill(){
 function showLoading(){document.getElementById('doc-status').classList.remove('hidden');}
 function hideLoading(){document.getElementById('doc-status').classList.add('hidden');}
 function stopStream(){if(abortCtrl)abortCtrl.abort();}
+
+// ═══ 음성 입력 ═══
+let recognition=null;
+let isRecording=false;
+let micAvailable=false;
+
+// 마이크 장치 확인
+(async function checkMic(){
+  const btn=document.getElementById('btn-mic');
+  try{
+    const devices=await navigator.mediaDevices.enumerateDevices();
+    const hasMic=devices.some(d=>d.kind==='audioinput');
+    const hasAPI=!!(window.SpeechRecognition||window.webkitSpeechRecognition);
+    if(hasMic&&hasAPI){micAvailable=true;return;}
+  }catch(e){}
+  // 비활성화 + 사선 표시
+  btn.disabled=true;
+  btn.classList.add('opacity-30','cursor-not-allowed');
+  btn.style.position='relative';
+  btn.innerHTML+=`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none"><div style="width:28px;height:2px;background:#dc2626;transform:rotate(-45deg);border-radius:1px"></div></div>`;
+  btn.title='음성 입력 장치 없음';
+})();
+
+function toggleMic(){
+  if(!micAvailable){sysMsg('음성 입력 장치가 없습니다.');return;}
+  if(isRecording){stopMic();return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){sysMsg('이 브라우저는 음성 인식을 지원하지 않습니다. Chrome/Edge를 사용하세요.');return;}
+  recognition=new SR();
+  recognition.lang='ko-KR';
+  recognition.continuous=true;
+  recognition.interimResults=true;
+  const ta=document.getElementById('ta');
+  const before=ta.value;
+  let finalText='';
+  recognition.onresult=function(e){
+    let interim='';
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal){finalText+=e.results[i][0].transcript;}
+      else{interim+=e.results[i][0].transcript;}
+    }
+    ta.value=before+(before?' ':'')+finalText+interim;
+    ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,150)+'px';
+  };
+  recognition.onerror=function(e){
+    if(e.error!=='aborted')sysMsg('음성 인식 오류: '+e.error);
+    stopMic();
+  };
+  recognition.onend=function(){stopMic();};
+  recognition.start();
+  isRecording=true;
+  document.getElementById('btn-mic').classList.add('recording');
+}
+function stopMic(){
+  if(recognition){try{recognition.stop();}catch(e){}}
+  isRecording=false;
+  document.getElementById('btn-mic').classList.remove('recording');
+}
 
 // ═══ UI ═══
 function addMsg(r,t){const box=document.getElementById('chatbox');const d=document.createElement('div');d.className=`msg ${r==='user'?'user':'bot'}`;d.innerHTML=r==='user'?esc(t):md(t);box.appendChild(d);scr();return d;}
