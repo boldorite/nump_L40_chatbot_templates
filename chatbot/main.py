@@ -74,7 +74,9 @@ def get_or_create_session(sid: str | None) -> tuple[str, dict]:
 
 # ── 프롬프트 ──
 SYSTEM_NORMAL = """당신은 친절하고 유능한 한국어 AI 어시스턴트 'NUMP 챗봇'입니다.
-사용자의 질문에 정확하고 간결하게 답변하세요. 마크다운 형식을 사용할 수 있습니다."""
+사용자의 질문에 정확하고 간결하게 답변하세요. 마크다운 형식을 사용할 수 있습니다.
+수학 수식은 반드시 LaTeX 형식으로 $...$ (인라인) 또는 $$...$$ (블록)으로 감싸서 작성하세요.
+예: 근의 공식은 $$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$ 이렇게 작성."""
 
 
 def build_template_prompt(schema: dict) -> str:

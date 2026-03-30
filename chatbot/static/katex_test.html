@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+</head><body>
+<h3>KaTeX sqrt test</h3>
+<div id="t1"></div>
+<div id="t2"></div>
+<div id="t3"></div>
+<script>
+katex.render("\\sqrt{b^2 - 4ac}", document.getElementById("t1"), {throwOnError:false});
+katex.render("x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}", document.getElementById("t2"), {displayMode:true,throwOnError:false});
+document.getElementById("t3").innerHTML = katex.renderToString("\\sqrt{x}", {throwOnError:false});
+</script>
+</body></html>
