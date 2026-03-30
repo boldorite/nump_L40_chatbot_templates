@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NUMP Chatbot with Templates</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <style>
     *{box-sizing:border-box}
     body{font-family:'Segoe UI',sans-serif;margin:0;height:100vh;display:flex;flex-direction:column;background:#f0f2f5;overflow:hidden}
@@ -387,7 +390,16 @@ function newChat(){
   document.getElementById('tpl-list-wrap').innerHTML='';
   document.getElementById('chatbox').innerHTML=`<div class="msg bot">안녕하세요! <b>NUMP 챗봇</b>입니다.<br><br>서식이 선택되어 있으면 대화를 통해 오른쪽 서식을 실시간으로 수정할 수 있습니다.<br>서식이 선택되어 있지 않으면 일반 챗봇과 동일하게 작동합니다.<br><span style="font-size:12px;color:#9ca3af">서식 폴더 열기 → 서식 선택 → 대화 → PDF/DOCX 저장</span></div>`;
 }
-function md(t){let h=esc(t);h=h.replace(/```(\w*)\n([\s\S]*?)```/g,'<pre><code>$2</code></pre>');h=h.replace(/`([^`]+)`/g,'<code class="bg-gray-100 px-1 rounded text-sm">$1</code>');h=h.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');h=h.replace(/\*(.*?)\*/g,'<em>$1</em>');h=h.replace(/\n/g,'<br>');return h;}
+function md(t){let h=esc(t);
+  // 수식: $$...$$ (블록) → <div class="katex-block">
+  h=h.replace(/\$\$([\s\S]*?)\$\$/g,function(_,m){try{return'<div class="katex-block" style="text-align:center;margin:8px 0">'+katex.renderToString(m.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/<br>/g,''),{displayMode:true,throwOnError:false})+'</div>';}catch(e){return '$$'+m+'$$';}});
+  // 수식: $...$ (인라인)
+  h=h.replace(/\$([^\$\n]+?)\$/g,function(_,m){try{return katex.renderToString(m.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>'),{displayMode:false,throwOnError:false});}catch(e){return '$'+m+'$';}});
+  // 수식: \[...\] (블록)
+  h=h.replace(/\\\[([\s\S]*?)\\\]/g,function(_,m){try{return'<div class="katex-block" style="text-align:center;margin:8px 0">'+katex.renderToString(m.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/<br>/g,''),{displayMode:true,throwOnError:false})+'</div>';}catch(e){return '\\['+m+'\\]';}});
+  // 수식: \(...\) (인라인)
+  h=h.replace(/\\\(([\s\S]*?)\\\)/g,function(_,m){try{return katex.renderToString(m.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>'),{displayMode:false,throwOnError:false});}catch(e){return '\\('+m+'\\)';}});
+  h=h.replace(/```(\w*)\n([\s\S]*?)```/g,'<pre><code>$2</code></pre>');h=h.replace(/`([^`]+)`/g,'<code class="bg-gray-100 px-1 rounded text-sm">$1</code>');h=h.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');h=h.replace(/\*(.*?)\*/g,'<em>$1</em>');h=h.replace(/\n/g,'<br>');return h;}
 function esc(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
 </script>
 </body>
