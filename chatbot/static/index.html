@@ -311,27 +311,21 @@ function stopStream(){if(abortCtrl)abortCtrl.abort();}
 // ═══ 음성 입력 ═══
 let recognition=null;
 let isRecording=false;
-let micAvailable=false;
 
-// 마이크 장치 확인
-(async function checkMic(){
+// API 지원 여부만 확인 (마이크는 사용 시 권한 요청)
+(function checkSpeechAPI(){
   const btn=document.getElementById('btn-mic');
-  try{
-    const devices=await navigator.mediaDevices.enumerateDevices();
-    const hasMic=devices.some(d=>d.kind==='audioinput');
-    const hasAPI=!!(window.SpeechRecognition||window.webkitSpeechRecognition);
-    if(hasMic&&hasAPI){micAvailable=true;return;}
-  }catch(e){}
-  // 비활성화 + 사선 표시
-  btn.disabled=true;
-  btn.classList.add('opacity-30','cursor-not-allowed');
-  btn.style.position='relative';
-  btn.innerHTML+=`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none"><div style="width:28px;height:2px;background:#dc2626;transform:rotate(-45deg);border-radius:1px"></div></div>`;
-  btn.title='음성 입력 장치 없음';
+  const hasAPI=!!(window.SpeechRecognition||window.webkitSpeechRecognition);
+  if(!hasAPI){
+    btn.disabled=true;
+    btn.classList.add('opacity-30','cursor-not-allowed');
+    btn.style.position='relative';
+    btn.innerHTML+=`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none"><div style="width:28px;height:2px;background:#dc2626;transform:rotate(-45deg);border-radius:1px"></div></div>`;
+    btn.title='이 브라우저는 음성 인식을 지원하지 않습니다';
+  }
 })();
 
 function toggleMic(){
-  if(!micAvailable){sysMsg('음성 입력 장치가 없습니다.');return;}
   if(isRecording){stopMic();return;}
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){sysMsg('이 브라우저는 음성 인식을 지원하지 않습니다. Chrome/Edge를 사용하세요.');return;}
@@ -352,7 +346,8 @@ function toggleMic(){
     ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,150)+'px';
   };
   recognition.onerror=function(e){
-    if(e.error!=='aborted')sysMsg('음성 인식 오류: '+e.error);
+    if(e.error==='not-allowed')sysMsg('마이크 권한이 거부되었습니다. 브라우저 설정에서 허용하세요.');
+    else if(e.error!=='aborted')sysMsg('음성 인식 오류: '+e.error);
     stopMic();
   };
   recognition.onend=function(){stopMic();};

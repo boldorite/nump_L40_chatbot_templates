@@ -268,7 +268,11 @@ Ollama:
 - Web Speech API (SpeechRecognition) 기반
 - 마이크 버튼: 입력창 옆, 클릭 시 빨간 펄스 애니메이션
 - continuous + interimResults → 실시간 텍스트 표시
-- 음성 장치 없으면: 반투명 + 빨간 사선 + 비활성화
+- Speech API 미지원 브라우저: 반투명 + 빨간 사선 + 비활성화
+- HTTP 환경 제한: 마이크 권한 차단됨 (브라우저 보안 정책)
+  → 해결법1: chrome://flags/#unsafely-treat-insecure-origin-as-secure 에
+             http://165.132.223.32 추가 후 Enabled → 재시작
+  → 해결법2: HTTPS 적용 (nginx + 자체 인증서)
 
 --- 내보내기 개선 ---
 - PDF: Playwright + Chromium async API → HTML 그대로 보존
