@@ -1,0 +1,11 @@
+# .llmwiki - CHO Wiki pointer
+project_id: nump_L40_chatbot_templates
+title: "L40 Chatbot Templates"
+dashboard_repo: "https://github.com/boldorite/cho-work-dashboard"
+repo: "https://github.com/boldorite/nump_L40_chatbot_templates"
+priority: P1
+status: active
+category: llm_service
+original_dev_history_file: "L40_chatbot_template_dev_history.txt"
+dev_history_file: "docs/91_dev_history.md"
+standard_dev_history: "docs/91_dev_history.md"
